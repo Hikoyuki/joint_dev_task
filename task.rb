@@ -99,8 +99,9 @@ def q10
     # elsif
     #   puts "まぁまぁ好きです"
     # end
-    food = food.include?("うに")
-    puts food ? "好物です" : "まぁまぁ好きです"
+    # food = food.include?("うに")
+    # puts food ? "好物です" : "まぁまぁ好きです"
+    puts food.include?("うに")? "好物です" : "まぁまぁ好きです"
   end
 end
 
@@ -113,9 +114,12 @@ def q11
   # sports1.each.with_index(1) do |s, i|
   #   puts "No#{i} #{s}"
   # end
-  sports.flatten!
-  sports.uniq!
-  sports.each.with_index(1) do |name, i|
+  # sports.flatten!
+  # sports.uniq!
+  # sports.each.with_index(1) do |name, i|
+  #   puts "No#{i} #{name}"
+  # end
+  sports.flatten!.uniq!.each.with_index(1) do |name, i|
     puts "No#{i} #{name}"
   end
 end
@@ -154,11 +158,12 @@ def q15
   # 以下に回答を記載
   # puts "OK" if data1.key?(:age)
   # puts "NG" else data2.key?(:age)
-  data = data1.key?(:age)
-  puts data ? "OK" : "NG"
-  
-  data = data2.key?(:age)
-  puts data ? "OK" : "NG"
+  # data = data1.key?(:age)
+  # puts data ? "OK" : "NG"
+  # data = data2.key?(:age)
+  # puts data ? "OK" : "NG"
+  puts data1.key?(:age)? "OK" : "NG"
+  puts data2.key?(:age)? "OK" : "NG"
 end
 
 def q16
