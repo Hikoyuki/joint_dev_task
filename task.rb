@@ -182,28 +182,30 @@ end
 
 class UserQ17
   # 以下に回答を記載
-  def initialize(name:, age:, gender:)
-      @name = name
-      @age = age
-      @gender = gender
+  def initialize(**params)
+      @name = params[:name]
+      @age = params[:age]
+      @gender = params[:gender]
   end
 
-  def name
-    @name
-  end
-
-  def age
-    @age
-  end
-
-  def gender
-    @gender
-  end
+  # def name
+  #   @name
+  # end
+  #
+  # def age
+  #   @age
+  # end
+  #
+  # def gender
+  #   @gender
+  # end
 
   def info
-    puts "名前：#{name}"
-    puts "年齢：#{age}"
-    puts "性別：#{gender}"
+    puts <<~TEXT
+    名前：#{@name}
+    年齢：#{@age}
+    性別：#{@gender}
+    TEXT
   end
 end
 
@@ -224,18 +226,18 @@ class UserQ18
       @age = age
   end
 
-  def name
-    @name
-  end
-
-  def age
-    @age
-  end
+  # def name
+  #   @name
+  # end
+  #
+  # def age
+  #   @age
+  # end
 
   def introduce
-    if age == 32
+    if @age > 20
      "こんにちは，あじーと申します。宜しくお願いいたします。"
-    elsif age = 10
+   else
      "はいさいまいど〜，ゆたぼんです！！！"
     end
   end
@@ -252,14 +254,15 @@ end
 
 class Item
   # 以下を修正して下さい
+  attr_reader :name
 
   def initialize(name:)
     @name = name
   end
 
-  def name
-    @name
-  end
+  # def name
+  #   @name
+  # end
 
 end
 
@@ -293,23 +296,21 @@ class Zoo
     @entry_fee = entry_fee
   end
 
-  def name
-    @name
-  end
-
-  def entry_fee
-    @entry_fee
-  end
-
   def info_entry_fee(user)
-    if user.age < 5
-    puts "#{user.name}さんの入場料金は#{entry_fee[:infant]}円です。"
-    elsif user.age > 6 && user.age < 12
-    puts "#{user.name}さんの入場料金は#{entry_fee[:children]}円です。"
-    elsif user.age > 13 && user.age < 64
-    puts "#{user.name}さんの入場料金は#{entry_fee[:adult]}円です。"
-    elsif user.age > 65 && user.age < 120
-    puts "#{user.name}さんの入場料金は#{entry_fee[:senior]}円です。"
+    infant = @entry_fee[:infant]
+    children = @entry_fee[:children]
+    adult = @entry_fee[:adult]
+    senior = @entry_fee[:senior]
+
+    case user.age
+    when 0..5
+    puts "#{user.name}さんの入場料金は#{infant}円です。"
+    when 6..12
+    puts "#{user.name}さんの入場料金は#{children}円です。"
+    when 13..64
+    puts "#{user.name}さんの入場料金は#{adult}円です。"
+    when  65..120
+    puts "#{user.name}さんの入場料金は#{senior}円です。"
     end
   end
 
